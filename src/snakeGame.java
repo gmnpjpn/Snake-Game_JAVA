@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
+    // Tile nested class
     private class Tile {
         int x;
         int y;
@@ -16,25 +17,26 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         }
     }
     
+    // Frame attributes
     int frameWidth;
     int frameHeight;
     int tileSize = 25;  //px area
 
-    // Snake
+    // Snake attributes
     Tile snakeHead;
     ArrayList<Tile> snakeBody;
 
-
-    // Food
+    // Food attributes
     Tile food;
     Random random;
 
-    //game logic
-    Timer loop;
+    // Game logic attributes
+    Timer gameLoop;
     int velocityX;
     int velocityY;
     boolean gameOver = false;
 
+    // Class constructor
     SnakeGame(int frameWidth, int frameHeight){
         this.frameWidth = frameWidth;
         this.frameHeight = frameHeight;
@@ -43,20 +45,20 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         addKeyListener(this);
         setFocusable(true);
 
-        // Creates the tile and specifies the location in the grid.
+        // Creates the tile and specifies the location on the grid.
         snakeHead = new Tile(5, 5);
-        snakeBody = new ArrayList<Tile>();
-
         food = new Tile (10, 10);
         
+        snakeBody = new ArrayList<Tile>();
         random = new Random();
-        placeFood();
+        
+        spawnFood();
 
         velocityX =  0;
         velocityY = 0;
 
-        loop = new Timer(100, this);
-        loop.start();
+        gameLoop = new Timer(100, this);
+        gameLoop.start();
     }
 
     public void paintComponent(Graphics g) {
@@ -96,7 +98,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         }
     }
 
-    public void placeFood() {
+    public void spawnFood() {
         food.x = random.nextInt(frameWidth / tileSize);
         food.y = random.nextInt(frameHeight / tileSize);
     }
@@ -106,10 +108,10 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     }
 
     public void move() {
-        //eat food
+        // Eat food and respawn it
         if (collision(snakeHead, food)) {
             snakeBody.add(new Tile(food.x, food.y));
-            placeFood();
+            spawnFood();
         }
 
         // Snake body
@@ -126,22 +128,22 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
         }
 
-        //snake head
+        // Snake head
         snakeHead.x += velocityX;
         snakeHead.y += velocityY;
 
-        // game over conditions
+        // Game Over conditions
         for (int i = 0; i < snakeBody.size(); i++) {
             Tile snakePart = snakeBody.get(i);
 
-            // Collide with the snake head.
+            // Collision with the snake head.
             if (collision(snakeHead, snakePart)) {
                 gameOver = true;
-
             }
         }
 
-        if (snakeHead.x * tileSize < 0 || snakeHead.x > frameWidth || snakeHead.y * tileSize < 0 || snakeHead.y > frameHeight) {
+        // Game Over if the snake goes beyond the walls
+        if (snakeHead.x * tileSize < 0 || snakeHead.x > frameWidth / tileSize || snakeHead.y * tileSize < 0 || snakeHead.y > frameHeight / tileSize) {
             gameOver = true;
         }
     }
@@ -151,29 +153,29 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         move();
         repaint();
         if (gameOver) {
-            loop.stop();
+            gameLoop.stop();
         }
     }
 
+    // The second condition prevents the snake from "stepping on its tail" when going up or down
     @Override
     public void keyPressed(KeyEvent e) {
-        // The second condition prevents the snake from "stepping on its tail" when going up or down.
         if (e.getKeyCode() == KeyEvent.VK_UP && velocityY != 1) {
             velocityX = 0;
             velocityY = -1;
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN && velocityY != -1) {
             velocityX = 0;
             velocityY = 1;
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT && velocityX != 1) {
             velocityX = -1;
             velocityY = 0;
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && velocityX != -1) {
             velocityX = 1;
             velocityY = 0;
         }
     }
 
-    // Do not need
+    // Not needed
     @Override
     public void keyReleased(KeyEvent e) {}
     @Override
