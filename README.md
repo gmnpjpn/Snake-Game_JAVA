@@ -5,22 +5,21 @@
 
 <p align="center">Logo designed by <a href="http://www.freepik.com/">http://www.freepik.com/</a>.
 </p>
-
+<p align="center">This code is inspired by the project of <a href="https://github.com/ImKennyYip/snake-java">ImKennyYip</a>, I tried to reproduce and understand it.
+</p>
 
 <h3 align="center">Snake Game in Java</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
 
 ---
 
-<p align="center"> Snake game using Java and Swing
+<p align="center"> Snake game using JAVA and SWING library
     <br> 
 </p>
 
@@ -38,81 +37,30 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+The purpose of this project is train my skill in Java and GUI making using Swing.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+- You must have <a href="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=248737_8c876547113c4e4aab3c868e9e0ec572">JAVA</a> installed on your computer.
 
-```
-Give examples
-```
+### Download and Execution
 
-### Installing
+Click on the release and download "snake.jar".
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
+When downloaded, double click it.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [JAVA](https://www.java.com/es/) - Language Programming
+- [SWING](https://docs.oracle.com/javase/6/docs/technotes/guides/swing/) - Java's Graphic Library
 
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@gmnpjpn](https://github.com/kylelobo) - Creator and developer
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- <a href="https://www.youtube.com/watch?v=Y62MJny9LHg&t=1s">ImKennyYip's Video</a>
+- <a href="https://github.com/ImKennyYip/snake-java">ImKennyYip's Repository</a>
