@@ -18,6 +18,6 @@ public class App {
         SnakeGame snakeGame = new SnakeGame(frameWidth, frameHeight);
         frame.add(snakeGame);   // Jpanel inside of the frame
         frame.pack();   // Adjust the frame size (the tittle bar is inlcuded in the size, and we doesn't want that).
-
+        snakeGame.requestFocus();
     }
 }

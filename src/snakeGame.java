@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SnakeGame extends JPanel{
+public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
     private class Tile {
         int x;
@@ -24,11 +24,18 @@ public class SnakeGame extends JPanel{
     Tile food;
     Random random;
 
+    //game logic
+    Timer loop;
+    int velocityX;
+    int velocityY;
+
     SnakeGame(int frameWidth, int frameHeight){
         this.frameWidth = frameWidth;
         this.frameHeight = frameHeight;
         setPreferredSize(new Dimension(this.frameWidth, this.frameHeight));
         setBackground(Color.black);
+        addKeyListener(this);
+        setFocusable(true);
 
         // Creates the tile and specifies the location in the grid.
         snakeHead = new Tile(5, 5);
@@ -36,6 +43,12 @@ public class SnakeGame extends JPanel{
         
         random = new Random();
         placeFood();
+
+        velocityX =  0;
+        velocityY = 0;
+
+        loop = new Timer(100, this);
+        loop.start();
     }
 
     public void paintComponent(Graphics g) {
@@ -63,4 +76,40 @@ public class SnakeGame extends JPanel{
         food.x = random.nextInt(frameWidth / tileSize);
         food.y = random.nextInt(frameHeight / tileSize);
     }
+
+    public void move() {
+        //snake head
+        snakeHead.x += velocityX;
+        snakeHead.y += velocityY;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        move();
+        repaint();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // The second condition prevents the snake from "stepping on its tail" when going up or down.
+        if (e.getKeyCode() == KeyEvent.VK_UP && velocityY != 1) {
+            velocityX = 0;
+            velocityY = -1;
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN && velocityY != -1) {
+            velocityX = 0;
+            velocityY = 1;
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            velocityX = -1;
+            velocityY = 0;
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            velocityX = 1;
+            velocityY = 0;
+        }
+    }
+
+    // Do not need
+    @Override
+    public void keyReleased(KeyEvent e) {}
+    @Override
+    public void keyTyped(KeyEvent e) {}
 }
