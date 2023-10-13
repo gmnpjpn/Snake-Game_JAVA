@@ -2,11 +2,13 @@ import javax.swing.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        // Frame dimensions and icon.
         int frameWidth = 600;
         int frameHeight = 600;
         ImageIcon img = new ImageIcon("assets/snakeIcon.png");
 
-        JFrame frame = new JFrame("Snake"); // The frame represents ALL the window, including tittle bar.
+        // The frame represents ALL the window, including tittle bar.
+        JFrame frame = new JFrame("Snake");
         frame.setIconImage(img.getImage());
         frame.setVisible(true);
         frame.setSize(frameWidth, frameHeight);
